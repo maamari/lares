@@ -77,7 +77,7 @@ def generate(prompt, reference, max_iterations=10, task_type = None):
 
         # Check if the response is acceptable
         if score >= 0.3 and toxicity <= 0.7:
-            return candidate
+            return candidate, toxicity, score
 
         # If the response is not acceptable due to low score, generate a new response
         elif score < 0.3:
@@ -86,10 +86,10 @@ def generate(prompt, reference, max_iterations=10, task_type = None):
 
         # If the response is not acceptable due to high toxicity, generate a safe response
         else:
-            candidate = until_safe(candidate)
+            candidate, toxicity, score = until_safe(candidate)
 
             # If no safe response is found after max_attempts, raise an exception
             if candidate is None:
                 raise ValueError("Failed to generate an acceptable response after max_iterations")
 
-    return None
+    return None, toxicity, score
