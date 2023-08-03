@@ -2,7 +2,10 @@ LICENSE
 MANIFEST.in
 README.md
 setup.py
+__pycache__/inviz.cpython-310.pyc
+lares/evaluate.py
 lares/lares.py
+lares/validate.py
 lares/lares.egg-info/PKG-INFO
 lares/lares.egg-info/SOURCES.txt
 lares/lares.egg-info/dependency_links.txt
