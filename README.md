@@ -1,12 +1,19 @@
-# Lares
+LARES (vaLidation, evAluation and REliability Solutions) is a Python package designed to assist with the evaluation and validation models in various tasks such as translation, summarization, and rephrasing. 
 
-LARES (vaLidation, evAluation and REliability Solutions) is a Python package designed to assist with the evaluation, validation, and generation of text in various tasks such as translation, summarization, and rephrasing. 
+This package leverages a suite of existing tools and resources to provide the best form of evaluation and validation for the prompted task. Natural Language Toolkit (NLTK), BERT, and ROUGE are employed for evaluations, while Microsoft's Fairlearn, Facebook's BART, and roBERTa are used to assess and address the toxicity and fairness of a given model.
+
+In addition, LARES uses datasets from HuggingFace, where the choice of datasets was informed by benchmark setters such as the General Language Understanding Evaluation (GLUE) benchmark.
 
 ## Features
 
-- **Quantitative and Qualitative Evaluation**: LARES provides options both qualitative and quantitative approaches to evaluating models. Quantitative metrics include METEOR scores for translations, normalized ROUGE scores for summarizations, and BERT scores for rephrasing tasks. Qualitative metrics are computed both from binary user judgements as well as sentiment analysis done on user feedback.
+- **Quantitative and Qualitative Evaluation**: Provides both qualitative and quantitative approaches to evaluating models. Quantitative metrics include METEOR scores for translations, normalized ROUGE scores for summarizations, and BERT scores for rephrasing tasks. Qualitative metrics are computed both from binary user judgements as well as sentiment analysis done on user feedback.
 
-- **Toxicity Identification**: Predicts the toxicity of a given text using a pre-trained toxicity model and iteratively rephrases model responses until below a user-specified toxicity threshold.
+- **Fairness and Toxicity Validation**: Provides a quantitative measure of the toxicity and fairness of a given model for specific tasks by leveraging Fairlearn and roBERTa. 
+
+- **Iterative Reconstruction**: Iteratively rephrases model responses until below a specified toxicity and above a specified quality threshold using BART 
+
+## Workflow
+
 
 ## Installation
 

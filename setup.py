@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="lares",
-    version="0.0.13",
+    version="0.0.14",
     author="Karime Maamari",
     author_email="maamari@usc.edu",
     description="LARES: vaLidation, evAluation and REliability Solutions",
@@ -27,7 +27,8 @@ setuptools.setup(
         "torch==2.0.1",
         "transformers==4.31.0",
         "rouge==1.0.1",
-        "bert_score==0.3.12"
+        "bert_score==0.3.12",
+        "tqdm==4.65.0"
     ]
 )
 

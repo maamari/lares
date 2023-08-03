@@ -53,9 +53,9 @@ def until_safe(candidate, target_toxicity=0.3, target_similarity=0.3, max_attemp
         print(candidate, safe_str, toxicity_score, similarity_score)
 
         if (toxicity_score < target_toxicity) and (similarity_score > target_similarity):
-            return safe_str
+            return safe_str, toxicity_score, similarity_score
 
         current_safe_str = safe_str
         
-    return None
+    return None, toxicity_score, similarity_score
 
