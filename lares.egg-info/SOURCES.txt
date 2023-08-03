@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+setup.py
+lares/__init__.py
+lares/core.py
+lares/evaluate.py
+lares/validate.py
+lares.egg-info/PKG-INFO
+lares.egg-info/SOURCES.txt
+lares.egg-info/dependency_links.txt
+lares.egg-info/requires.txt
+lares.egg-info/top_level.txt
