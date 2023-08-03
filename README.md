@@ -1,2 +1,2 @@
 # lares
-LARES: vaLidation, evAluation, and REliability Solutions
+LARES: vaLidation, evAluation and REliability Solutions
