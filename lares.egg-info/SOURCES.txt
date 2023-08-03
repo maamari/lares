@@ -3,8 +3,8 @@ MANIFEST.in
 README.md
 setup.py
 lares/__init__.py
-lares/core.py
 lares/evaluate.py
+lares/generate.py
 lares/validate.py
 lares.egg-info/PKG-INFO
 lares.egg-info/SOURCES.txt
