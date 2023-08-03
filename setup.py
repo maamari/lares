@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="lares",
-    version="0.0.1",
+    version="0.0.13",
     author="Karime Maamari",
     author_email="maamari@usc.edu",
     description="LARES: vaLidation, evAluation and REliability Solutions",

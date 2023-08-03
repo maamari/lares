@@ -1,3 +1,8 @@
+from rouge import Rouge
+from bert_score import score
+from nltk.translate.meteor_score import single_meteor_score
+
+
 def compute_average_meteor_score(candidate, reference):
     """
     Compute the average METEOR score for a set of translations.
