@@ -10,7 +10,7 @@ This package leverages a suite of existing tools and resources to provide the be
 In addition, LARES uses datasets from HuggingFace, where the choice of datasets was informed by benchmark setters such as the General Language Understanding Evaluation (GLUE) benchmark.
 
 ## Sources
-| Source | Objective | Reference |
+| Tool | Objective | Reference |
 |--------|-----------|-----------|
 | roBERTa (Twitter) | Validation (Sentiment) | [2010.12421](https://arxiv.org/pdf/2010.12421.pdf) |
 | BART (Facebook) | Validation (Detox) | [1910.13461](https://arxiv.org/abs/1910.13461) |
