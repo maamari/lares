@@ -2,7 +2,6 @@ from rouge import Rouge
 from bert_score import score
 from nltk.translate.meteor_score import single_meteor_score
 
-
 def compute_average_meteor_score(candidate, reference):
     """
     Compute the average METEOR score for a set of translations.
@@ -38,7 +37,7 @@ def compute_normalized_rouge_score(candidate, reference):
     """
     rouge = Rouge()
     scores = rouge.get_scores(candidate, reference)
-    
+
     avg_f1_score = sum(score['rouge-1']['f'] + score['rouge-2']['f'] + score['rouge-l']['f'] for score in scores) / 3
     normalized_score = avg_f1_score / 1.0
     return normalized_score
@@ -57,3 +56,4 @@ def compute_bertscore(candidate, reference):
     """
     _, _, bert_score = score([candidate], [reference], lang="en", model_type="roberta-base", num_layers=4)
     return bert_score.item()
+
