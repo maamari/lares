@@ -99,7 +99,7 @@ references = refs_fr + refs_es
 # Create labels for the data (0 for French, 1 for Spanish)
 labels = np.concatenate([np.zeros(len(prompts_fr)), np.ones(len(prompts_es))]).tolist()
 
-# Use the generate function from the lares module to get the model's metrics for this task
+# Use the generate function from the LARES module to get the model's metrics for this task
 data, bias, acc, tox = generate(prompts, references, labels, max_iterations=1, task_type='Translation', feedback=False)
 
 # Print the results
@@ -124,4 +124,4 @@ To be explicit, you can install via:
 pip install openai==0.27.8 nltk==3.7 torch==2.0.1 transformers==4.31.0 rouge==1.0.1 bert_score==0.3.12 datasets==1.11.0
 ```
 
-Though installation of lares via pip should account for these underlying dependencies
+Though installation of LARES via pip should account for these underlying dependencies.
