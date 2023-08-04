@@ -14,6 +14,43 @@ In addition, LARES uses datasets from HuggingFace, where the choice of datasets 
 
 ## Workflow
 ![](images/workflow.svg)
+#### Prompt from Dataset
+
+Start with a dataset and create a set of prompts and references to evaluate the model. The dataset can be a benchmark dataset obtained from sources such as HuggingFace, or it can be real-time data that has been scraped.
+
+#### Task Determination/Labeling
+
+Each task is classified according to its underlying purpose, such as translation, summarization, rephrasing, sentiment analysis, or classification. This classification provides two key benefits:
+
+1. **Model Selection**: Understanding the task helps us choose the best model for it, improving the overall performance of our framework.
+2. **Response Evaluation**: Different tasks require different evaluation metrics. By classifying our tasks, we can use the most appropriate metrics to evaluate the responses.
+
+The datasets are labeled (by the user) based on potential differences. For instance, English-to-French prompts might be labeled 'fr', while English-to-Spanish prompts could be labeled 'es'. This helps us identify potential biases in the model.
+
+#### Output Generation from Model
+
+The prompt is passed to a model, which generates a response.
+
+#### Evaluation According to Task Label and Validation
+
+The evaluation score is calculated by comparing the model's response to a reference using a task-specific metric. The validation score is calculated by using a pre-trained model to determine the sentiment of the response and assign a toxicity/profanity metric. If the user chooses not to use the optional Rephrase/Detox loop, the scores and response are added to an output dictionary.
+
+#### (OPTIONAL) Check Against Threshold, Check Num. Iterations, Rephrase/Detox, and Optional User Evaluation
+
+The user can set a threshold for the validity and evaluation scores. 
+
+1. If both scores exceed their respective thresholds, they, along with the response, are added to the output dictionary.
+2. If either score fails to meet its threshold, we enter an iterative loop of rephrasing and detoxifying. The user can set a maximum number of iterations for this process.
+
+    A. The response will be rephrased and/or detoxified until it meets the threshold or until the maximum number of iterations is reached.
+    
+    B. If both scores exceed their thresholds, they, along with the response, are added to the output dictionary.
+    
+    C. If we reach the maximum number of iterations without exceeding both thresholds, the user is asked to review the results. This provides the opportunity to catch potential nuances in responses without relying solely on manual efforts. This step is optional. If the user participates, their evaluation is added to the output dictionary. If not, the scores from the final iteration are added.
+
+#### Fairness
+
+At this point, we have a set of labeled responses and their corresponding validation and evaluation scores. These labels and scores allow us to identify potential biases in the model. We provide the user with the responses, the average validation and evaluation scores for each labeled set, and an overall measure of the model's fairness.
 
 
 ## Installation
