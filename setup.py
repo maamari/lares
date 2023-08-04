@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="lares",
-    version="0.0.28",
+    version="0.0.29",
     author="Karime Maamari",
     author_email="maamari@usc.edu",
     description="LARES: vaLidation, evAluation and REliability Solutions",
@@ -16,6 +16,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     classifiers=[
+        "Programming Language :: Python :: 3.6+",
         "License :: OSI Approved :: MIT License",
         "Operating System :: POSIX :: Linux",
     ],
