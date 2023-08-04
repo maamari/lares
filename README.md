@@ -9,6 +9,17 @@ This package leverages a suite of existing tools and resources to provide the be
 
 In addition, LARES uses datasets from HuggingFace, where the choice of datasets was informed by benchmark setters such as the General Language Understanding Evaluation (GLUE) benchmark.
 
+## Sources
+| Source | Objective | Reference |
+|--------|-----------|-----------|
+| roBERTa (Twitter) | Validation (Sentiment) | [2010.12421](https://arxiv.org/pdf/2010.12421.pdf) |
+| BART (Facebook) | Validation (Detox) | [1910.13461](https://arxiv.org/abs/1910.13461) |
+| Fairlearn (Microsoft) | Fairness (Bias) | [2303.16626](https://arxiv.org/pdf/2303.16626.pdf) |
+| METEOR Score (NLTK) | Evaluation (Translation) | [W05-0909](https://aclanthology.org/W05-0909.pdf) |
+| ROUGE Score | Evaluation (Summarization) | [W04-1013](https://aclanthology.org/W04-1013.pdf) |
+| BERT Score | Evaluation (Rephrasing) | [1904.09675](https://arxiv.org/pdf/1904.09675.pdf) |
+
+
 ## Features
 
 - **Quantitative and Qualitative Evaluation**: Provides both qualitative and quantitative approaches to evaluating models. Quantitative metrics include METEOR scores for translations, normalized ROUGE scores for summarizations, and BERT scores for rephrasing tasks. Qualitative metrics are computed both from binary user judgements as well as sentiment analysis done on user feedback.
