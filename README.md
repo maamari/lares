@@ -109,7 +109,7 @@ print(f"Toxicity: {tox[0]} (Set 1), {tox[1]} (Set 2)")
 ```
 
 ## Sources
-### Underlying tools
+### Underlying Tools
 This package leverages a suite of existing tools and resources to provide the best form of evaluation and validation for the prompted task. METEOR, BERT, and ROUGE scores are employed for evaluations, while Microsoft's Fairlearn, Facebook's BART, and Twitter's roBERTa are used to assess and address the toxicity and fairness of a given model.
 
 | Tool | Objective | Reference |
