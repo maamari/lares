@@ -22,10 +22,10 @@ In addition, we suggest the use of the following datasets. The choice of dataset
 | Dataset | Application | Reference |
 |---------|-------------|-----------|
 | Databricks' Dolly | Q&A, Summarization, Classification | [Dolly Blog](https://www.databricks.com/blog/2023/04/12/dolly-first-open-commercially-viable-instruction-tuned-llm) |
-| The Open Parallel Corpus (OPUS) | Translation | [2020.eamt-1.61](https://aclanthology.org/2020.eamt-1.61/) |
-| GLUE Benchmark | Sentiment, Paraphrasing | [1804.07461](https://arxiv.org/pdf/1804.07461.pdf) |
+| The Open Parallel Corpus | Translation | [2020.eamt-1.61](https://aclanthology.org/2020.eamt-1.61/) |
+| General Language Understanding Evaluation | Sentiment, Paraphrasing | [1804.07461](https://arxiv.org/pdf/1804.07461.pdf) |
 | ReAding Comprehension Dataset From Examinations | Word match, Paraphrasing, Reasoning | [1704.04683](https://arxiv.org/pdf/1704.04683.pdf) |
-| Stanford Question Answering Dataset (SQUAD) | Q&A | [1704.04683](https://arxiv.org/pdf/1704.04683.pdf) |
+| Stanford Question Answering Dataset | Q&A | [1704.04683](https://arxiv.org/pdf/1704.04683.pdf) |
 
 ## Features
 
