@@ -17,7 +17,7 @@ This package leverages a suite of existing tools and resources to provide the be
 | ROUGE Score | Evaluation (Summarization) | [W04-1013](https://aclanthology.org/W04-1013.pdf) |
 | BERT Score | Evaluation (Rephrasing) | [1904.09675](https://arxiv.org/pdf/1904.09675.pdf) |
 
-In addition, we suggest the use of the following datasets. The choice of dataset was informed by benchmark setters such as the General Language Understanding Evaluation (GLUE) benchmark when possible.
+We suggest the use of the following datasets and benchmarks, but allow complete flexibility in choice of dataset.
 
 | Dataset | Application | Reference |
 |---------|-------------|-----------|
