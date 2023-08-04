@@ -67,24 +67,45 @@ pip install lares
 Here is a basic usage example for translation task:
 
 ```python
+# Imports
 import openai
 from datasets import load_dataset
-from lares import *
+from lares import generate
+import numpy as np
 
-openai.api_key = '' # replace with your OpenAI API key
-dataset = load_dataset("opus100", "en-fr")
+# Set your API key
+openai.api_key = ''
 
-for data in dataset["validation"]['translation'][100:110]:
-    prompt = data["en"]
-    reference = data["fr"]
+# Loader
+def load_translation_data(dataset_name, language_pair, num_samples=10):
+    # Grab data
+    dataset = load_dataset(dataset_name, language_pair)
+    data = dataset["validation"]['translation'][:num_samples]
 
-    input_prompt = "Translate the following to french: "+prompt
-    print(input_prompt)
-    result = generate(input_prompt, reference, task_type='Translation')
+    # Create the prompts
+    prompts = [f'Translate to {language_pair.split("-")[1]}: {item["en"]}' for item in data]
+    # Get the references (correct translations)
+    references = [item[language_pair.split("-")[1]] for item in data]
+    # Return prompts and references
+    return prompts, references
 
-    print(f"Prompt: {prompt}")
-    print(f"Reference: {reference}")
-    print(f"Generated Response: {result}\n")
+# Load the translation data
+prompts_fr, refs_fr = load_translation_data("opus100", "en-fr")
+prompts_es, refs_es = load_translation_data("opus100", "en-es")
+
+# Combine the prompts and references
+prompts = prompts_fr + prompts_es
+references = refs_fr + refs_es
+# Create labels for the data (0 for French, 1 for Spanish)
+labels = np.concatenate([np.zeros(len(prompts_fr)), np.ones(len(prompts_es))]).tolist()
+
+# Use the generate function from the lares module to get the model's metrics for this task
+data, bias, acc, tox = generate(prompts, references, labels, max_iterations=1, task_type='Translation', feedback=False)
+
+# Print the results
+print(f"Bias: {bias}")
+print(f"Accuracy: {acc[0]} (Set 1), {acc[1]} (Set 2)")
+print(f"Toxicity: {tox[0]} (Set 1), {tox[1]} (Set 2)")
 ```
 
 ## Dependencies
