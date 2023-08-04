@@ -5,7 +5,7 @@
 
 A Python package designed to assist with the evaluation and validation models in various tasks such as translation, summarization, and rephrasing. 
 
-## Sources
+## Underlying tools
 This package leverages a suite of existing tools and resources to provide the best form of evaluation and validation for the prompted task. METEOR, BERT, and ROUGE scores are employed for evaluations, while Microsoft's Fairlearn, Facebook's BART, and Twitter's roBERTa are used to assess and address the toxicity and fairness of a given model.
 
 | Tool | Objective | Reference |
@@ -16,6 +16,8 @@ This package leverages a suite of existing tools and resources to provide the be
 | METEOR Score (NLTK) | Evaluation (Translation) | [W05-0909](https://aclanthology.org/W05-0909.pdf) |
 | ROUGE Score | Evaluation (Summarization) | [W04-1013](https://aclanthology.org/W04-1013.pdf) |
 | BERT Score | Evaluation (Rephrasing) | [1904.09675](https://arxiv.org/pdf/1904.09675.pdf) |
+
+## Datasets
 
 We suggest the use of the following datasets and benchmarks, but allow complete flexibility in choice of dataset.
 
