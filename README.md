@@ -13,7 +13,7 @@ In addition, LARES uses datasets from HuggingFace, where the choice of datasets 
 - **Iterative Reconstruction**: Iteratively rephrases model responses until below a specified toxicity and above a specified quality threshold using BART 
 
 ## Workflow
-![](image/workflow.svg)
+![](images/workflow.svg)
 
 
 ## Installation
