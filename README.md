@@ -5,8 +5,6 @@
 
 A Python package designed to assist with the evaluation and validation models in various tasks such as translation, summarization, and rephrasing. 
 
-In addition, LARES uses datasets from HuggingFace, where the choice of datasets was informed by benchmark setters such as the General Language Understanding Evaluation (GLUE) benchmark.
-
 ## Sources
 This package leverages a suite of existing tools and resources to provide the best form of evaluation and validation for the prompted task. METEOR, BERT, and ROUGE scores are employed for evaluations, while Microsoft's Fairlearn, Facebook's BART, and Twitter's roBERTa are used to assess and address the toxicity and fairness of a given model.
 
@@ -19,6 +17,14 @@ This package leverages a suite of existing tools and resources to provide the be
 | ROUGE Score | Evaluation (Summarization) | [W04-1013](https://aclanthology.org/W04-1013.pdf) |
 | BERT Score | Evaluation (Rephrasing) | [1904.09675](https://arxiv.org/pdf/1904.09675.pdf) |
 
+In addition, we suggest the use of the following datasets. The choice of dataset was informed by benchmark setters such as the General Language Understanding Evaluation (GLUE) benchmark when possible.
+
+| Dataset | Application | Reference |
+|---------|-------------|-----------|
+| Databricks' Dolly | Q&A, Summarization, Classification, etc. | [Dolly Blog](https://www.databricks.com/blog/2023/04/12/dolly-first-open-commercially-viable-instruction-tuned-llm) |
+| The Open Parallel Corpus (OPUS) | Translation | [2020.eamt-1.61](https://aclanthology.org/2020.eamt-1.61/) |
+| GLUE Benchmark | Q&A, Extraction, Summarization, Classification, etc. | [Dolly Blog](https://www.databricks.com/blog/2023/04/12/dolly-first-open-commercially-viable-instruction-tuned-llm) |
+| Large-scale ReAding Comprehension Dataset From Examinations (RACE) | Word match, Paraphrasing, Reasoning | [1704.04683](https://arxiv.org/pdf/1704.04683.pdf) |
 
 ## Features
 
