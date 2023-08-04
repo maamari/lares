@@ -5,30 +5,6 @@
 
 A Python package designed to assist with the evaluation and validation models in various tasks such as translation, summarization, and rephrasing. 
 
-## Sources
-### Underlying tools
-This package leverages a suite of existing tools and resources to provide the best form of evaluation and validation for the prompted task. METEOR, BERT, and ROUGE scores are employed for evaluations, while Microsoft's Fairlearn, Facebook's BART, and Twitter's roBERTa are used to assess and address the toxicity and fairness of a given model.
-
-| Tool | Objective | Reference |
-|--------|-----------|-----------|
-| roBERTa (Twitter) | Validation (Sentiment) | [2010.12421](https://arxiv.org/pdf/2010.12421.pdf) |
-| BART (Facebook) | Validation (Detox) | [1910.13461](https://arxiv.org/abs/1910.13461) |
-| Fairlearn (Microsoft) | Fairness (Bias) | [2303.16626](https://arxiv.org/pdf/2303.16626.pdf) |
-| METEOR Score (NLTK) | Evaluation (Translation) | [W05-0909](https://aclanthology.org/W05-0909.pdf) |
-| ROUGE Score | Evaluation (Summarization) | [W04-1013](https://aclanthology.org/W04-1013.pdf) |
-| BERT Score | Evaluation (Rephrasing) | [1904.09675](https://arxiv.org/pdf/1904.09675.pdf) |
-
-### Suggested Datasets
-We suggest the use of the following datasets and benchmarks, but allow complete flexibility in choice of dataset.
-
-| Dataset | Application | Reference |
-|---------|-------------|-----------|
-| Databricks' Dolly | Q&A, Summarization, Classification | [Dolly Blog](https://www.databricks.com/blog/2023/04/12/dolly-first-open-commercially-viable-instruction-tuned-llm) |
-| OPUS | Translation | [2020.eamt-1.61](https://aclanthology.org/2020.eamt-1.61/) |
-| GLUE | Sentiment, Paraphrasing | [1804.07461](https://arxiv.org/pdf/1804.07461.pdf) |
-| RACE | Word match, Paraphrasing, Reasoning | [1704.04683](https://arxiv.org/pdf/1704.04683.pdf) |
-| SQuAD | Q&A | [1704.04683](https://arxiv.org/pdf/1704.04683.pdf) |
-
 ## Features
 
 - **Quantitative and Qualitative Evaluation**: Provides both qualitative and quantitative approaches to evaluating models. Quantitative metrics include METEOR scores for translations, normalized ROUGE scores for summarizations, and BERT scores for rephrasing tasks. Qualitative metrics are computed both from binary user judgements as well as sentiment analysis done on user feedback.
@@ -131,6 +107,30 @@ print(f"Bias: {bias}")
 print(f"Accuracy: {acc[0]} (Set 1), {acc[1]} (Set 2)")
 print(f"Toxicity: {tox[0]} (Set 1), {tox[1]} (Set 2)")
 ```
+
+## Sources
+### Underlying tools
+This package leverages a suite of existing tools and resources to provide the best form of evaluation and validation for the prompted task. METEOR, BERT, and ROUGE scores are employed for evaluations, while Microsoft's Fairlearn, Facebook's BART, and Twitter's roBERTa are used to assess and address the toxicity and fairness of a given model.
+
+| Tool | Objective | Reference |
+|--------|-----------|-----------|
+| roBERTa (Twitter) | Validation (Sentiment) | [2010.12421](https://arxiv.org/pdf/2010.12421.pdf) |
+| BART (Facebook) | Validation (Detox) | [1910.13461](https://arxiv.org/abs/1910.13461) |
+| Fairlearn (Microsoft) | Fairness (Bias) | [2303.16626](https://arxiv.org/pdf/2303.16626.pdf) |
+| METEOR Score (NLTK) | Evaluation (Translation) | [W05-0909](https://aclanthology.org/W05-0909.pdf) |
+| ROUGE Score | Evaluation (Summarization) | [W04-1013](https://aclanthology.org/W04-1013.pdf) |
+| BERT Score | Evaluation (Rephrasing) | [1904.09675](https://arxiv.org/pdf/1904.09675.pdf) |
+
+### Suggested Datasets
+We suggest the use of the following datasets and benchmarks, but allow complete flexibility in choice of dataset.
+
+| Dataset | Application | Reference |
+|---------|-------------|-----------|
+| Databricks' Dolly | Q&A, Summarization, Classification | [Dolly Blog](https://www.databricks.com/blog/2023/04/12/dolly-first-open-commercially-viable-instruction-tuned-llm) |
+| OPUS | Translation | [2020.eamt-1.61](https://aclanthology.org/2020.eamt-1.61/) |
+| GLUE | Sentiment, Paraphrasing | [1804.07461](https://arxiv.org/pdf/1804.07461.pdf) |
+| RACE | Word match, Paraphrasing, Reasoning | [1704.04683](https://arxiv.org/pdf/1704.04683.pdf) |
+| SQuAD | Q&A | [1704.04683](https://arxiv.org/pdf/1704.04683.pdf) |
 
 ## Dependencies
 
