@@ -5,7 +5,7 @@
 
 A Python package designed to assist with the evaluation and validation models in various tasks such as translation, summarization, and rephrasing. 
 
-This package leverages a suite of existing tools and resources to provide the best form of evaluation and validation for the prompted task. Natural Language Toolkit (NLTK), BERT, and ROUGE are employed for evaluations, while Microsoft's Fairlearn, Facebook's BART, and roBERTa are used to assess and address the toxicity and fairness of a given model.
+This package leverages a suite of existing tools and resources to provide the best form of evaluation and validation for the prompted task. METEOR, BERT, and ROUGE scores are employed for evaluations, while Microsoft's Fairlearn, Facebook's BART, and Twitter's roBERTa are used to assess and address the toxicity and fairness of a given model.
 
 In addition, LARES uses datasets from HuggingFace, where the choice of datasets was informed by benchmark setters such as the General Language Understanding Evaluation (GLUE) benchmark.
 
