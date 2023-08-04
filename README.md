@@ -1,4 +1,4 @@
-LARES (vaLidation, evAluation and REliability Solutions) is a Python package designed to assist with the evaluation and validation models in various tasks such as translation, summarization, and rephrasing. 
+LARES (vaLidation, evAluation and faiRnEss aSessments) is a Python package designed to assist with the evaluation and validation models in various tasks such as translation, summarization, and rephrasing. 
 
 This package leverages a suite of existing tools and resources to provide the best form of evaluation and validation for the prompted task. Natural Language Toolkit (NLTK), BERT, and ROUGE are employed for evaluations, while Microsoft's Fairlearn, Facebook's BART, and roBERTa are used to assess and address the toxicity and fairness of a given model.
 
