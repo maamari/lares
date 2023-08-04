@@ -7,7 +7,7 @@ A Python package designed to assist with the evaluation and validation models in
 
 ## Features
 
-- **Quantitative and Qualitative Evaluation**: Provides both qualitative and quantitative approaches to evaluating models. Quantitative metrics include METEOR scores for translations, normalized ROUGE scores for summarizations, and BERT scores for rephrasing tasks. Qualitative metrics are computed both from binary user judgements as well as sentiment analysis done on user feedback.
+- **Quantitative and Qualitative Evaluation**: Provides both qualitative and quantitative approaches to evaluating models. Quantitative metrics include METEOR scores for translations, normalized ROUGE scores for summarizations, and BERT scores for rephrasing tasks. Qualitative metrics are obtained from user feedback to responses.
 
 - **Fairness and Toxicity Validation**: Provides a quantitative measure of the toxicity and fairness of a given model for specific tasks by leveraging Fairlearn and roBERTa. 
 
