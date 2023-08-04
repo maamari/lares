@@ -123,3 +123,5 @@ To be explicit, you can install via:
 ```bash
 pip install openai==0.27.8 nltk==3.7 torch==2.0.1 transformers==4.31.0 rouge==1.0.1 bert_score==0.3.12 datasets==1.11.0
 ```
+
+Though installation of lares via pip should account for these underlying dependencies
