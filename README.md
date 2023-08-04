@@ -23,8 +23,8 @@ In addition, we suggest the use of the following datasets. The choice of dataset
 |---------|-------------|-----------|
 | Databricks' Dolly | Q&A, Summarization, Classification, etc. | [Dolly Blog](https://www.databricks.com/blog/2023/04/12/dolly-first-open-commercially-viable-instruction-tuned-llm) |
 | The Open Parallel Corpus (OPUS) | Translation | [2020.eamt-1.61](https://aclanthology.org/2020.eamt-1.61/) |
-| GLUE Benchmark | Q&A, Extraction, Summarization, Classification, etc. | [Dolly Blog](https://www.databricks.com/blog/2023/04/12/dolly-first-open-commercially-viable-instruction-tuned-llm) |
-| Large-scale ReAding Comprehension Dataset From Examinations (RACE) | Word match, Paraphrasing, Reasoning | [1704.04683](https://arxiv.org/pdf/1704.04683.pdf) |
+| GLUE Benchmarks | Q&A, Extraction, Summarization, Classification, etc. | [Dolly Blog](https://www.databricks.com/blog/2023/04/12/dolly-first-open-commercially-viable-instruction-tuned-llm) |
+| RACE Benchmarks | Word match, Paraphrasing, Reasoning | [1704.04683](https://arxiv.org/pdf/1704.04683.pdf) |
 
 ## Features
 
