@@ -1,7 +1,7 @@
 # LARES: vaLidation, evAluation, and faiRnEss aSessments
 ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
 [![PyPI version](https://badge.fury.io/py/lares.svg)](https://badge.fury.io/py/lares)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/lares?)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/lares)
 
 A Python package designed to assist with the evaluation and validation models in various tasks such as translation, summarization, and rephrasing. 
 
