@@ -1,20 +1,29 @@
 Metadata-Version: 2.1
 Name: lares
-Version: 0.0.28
+Version: 0.0.30
 Summary: LARES: vaLidation, evAluation and REliability Solutions
 Home-page: http://packages.python.org/lares
 Author: Karime Maamari
 Author-email: maamari@usc.edu
 License: MIT
 Keywords: evaluation,validation
-Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
 Classifier: License :: OSI Approved :: MIT License
-Classifier: Operating System :: POSIX :: Linux
 Requires-Python: >=3.6
 Description-Content-Type: text/markdown
 License-File: LICENSE
 
-LARES (vaLidation, evAluation and faiRnEss aSessments) is a Python package designed to assist with the evaluation and validation models in various tasks such as translation, summarization, and rephrasing. 
+# LARES: vaLidation, evAluation, and faiRnEss aSessments
+![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)
+[![PyPI version](https://badge.fury.io/py/lares.svg)](https://badge.fury.io/py/lares)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/lares)
+
+A Python package designed to assist with the evaluation and validation models in various tasks such as translation, summarization, and rephrasing. 
 
 This package leverages a suite of existing tools and resources to provide the best form of evaluation and validation for the prompted task. Natural Language Toolkit (NLTK), BERT, and ROUGE are employed for evaluations, while Microsoft's Fairlearn, Facebook's BART, and roBERTa are used to assess and address the toxicity and fairness of a given model.
 
@@ -29,6 +38,44 @@ In addition, LARES uses datasets from HuggingFace, where the choice of datasets 
 - **Iterative Reconstruction**: Iteratively rephrases model responses until below a specified toxicity and above a specified quality threshold using BART 
 
 ## Workflow
+![](images/workflow.svg)
+#### Prompt from Dataset
+
+Start with a dataset and create a set of prompts and references to evaluate the model. The dataset can be a benchmark dataset obtained from sources such as HuggingFace, or it can be real-time data that has been scraped.
+
+#### Task Determination/Labeling
+
+Each task is classified according to its underlying purpose, such as translation, summarization, rephrasing, sentiment analysis, or classification. This classification provides two key benefits:
+
+1. **Model Selection**: Understanding the task helps us choose the best model for it, improving the overall performance of our framework.
+2. **Response Evaluation**: Different tasks require different evaluation metrics. By classifying our tasks, we can use the most appropriate metrics to evaluate the responses.
+
+The datasets are labeled (by the user) based on potential differences. For instance, English-to-French prompts might be labeled 'fr', while English-to-Spanish prompts could be labeled 'es'. This helps us identify potential biases in the model.
+
+#### Output Generation from Model
+
+The prompt is passed to a model, which generates a response.
+
+#### Evaluation According to Task Label and Validation
+
+The evaluation score is calculated by comparing the model's response to a reference using a task-specific metric. The validation score is calculated by using a pre-trained model to determine the sentiment of the response and assign a toxicity/profanity metric. If the user chooses not to use the optional Rephrase/Detox loop, the scores and response are added to an output dictionary.
+
+#### (OPTIONAL) Check Against Threshold, Check Num. Iterations, Rephrase/Detox, and Optional User Evaluation
+
+The user can set a threshold for the validity and evaluation scores. 
+
+1. If both scores exceed their respective thresholds, they, along with the response, are added to the output dictionary.
+2. If either score fails to meet its threshold, we enter an iterative loop of rephrasing and detoxifying. The user can set a maximum number of iterations for this process.
+
+    A. The response will be rephrased and/or detoxified until it meets the threshold or until the maximum number of iterations is reached.
+    
+    B. If both scores exceed their thresholds, they, along with the response, are added to the output dictionary.
+    
+    C. If we reach the maximum number of iterations without exceeding both thresholds, the user is asked to review the results. This provides the opportunity to catch potential nuances in responses without relying solely on manual efforts. This step is optional. If the user participates, their evaluation is added to the output dictionary. If not, the scores from the final iteration are added.
+
+#### Fairness
+
+At this point, we have a set of labeled responses and their corresponding validation and evaluation scores. These labels and scores allow us to identify potential biases in the model. We provide the user with the responses, the average validation and evaluation scores for each labeled set, and an overall measure of the model's fairness.
 
 
 ## Installation
@@ -44,24 +91,45 @@ pip install lares
 Here is a basic usage example for translation task:
 
 ```python
+# Imports
 import openai
 from datasets import load_dataset
-from lares import *
+from lares import generate
+import numpy as np
 
-openai.api_key = '' # replace with your OpenAI API key
-dataset = load_dataset("opus100", "en-fr")
+# Set your API key
+openai.api_key = ''
 
-for data in dataset["validation"]['translation'][100:110]:
-    prompt = data["en"]
-    reference = data["fr"]
+# Loader
+def load_translation_data(dataset_name, language_pair, num_samples=10):
+    # Grab data
+    dataset = load_dataset(dataset_name, language_pair)
+    data = dataset["validation"]['translation'][:num_samples]
 
-    input_prompt = "Translate the following to french: "+prompt
-    print(input_prompt)
-    result = generate(input_prompt, reference, task_type='Translation')
+    # Create the prompts
+    prompts = [f'Translate to {language_pair.split("-")[1]}: {item["en"]}' for item in data]
+    # Get the references (correct translations)
+    references = [item[language_pair.split("-")[1]] for item in data]
+    # Return prompts and references
+    return prompts, references
 
-    print(f"Prompt: {prompt}")
-    print(f"Reference: {reference}")
-    print(f"Generated Response: {result}\n")
+# Load the translation data
+prompts_fr, refs_fr = load_translation_data("opus100", "en-fr")
+prompts_es, refs_es = load_translation_data("opus100", "en-es")
+
+# Combine the prompts and references
+prompts = prompts_fr + prompts_es
+references = refs_fr + refs_es
+# Create labels for the data (0 for French, 1 for Spanish)
+labels = np.concatenate([np.zeros(len(prompts_fr)), np.ones(len(prompts_es))]).tolist()
+
+# Use the generate function from the LARES module to get the model's metrics for this task
+data, bias, acc, tox = generate(prompts, references, labels, max_iterations=1, task_type='Translation', feedback=False)
+
+# Print the results
+print(f"Bias: {bias}")
+print(f"Accuracy: {acc[0]} (Set 1), {acc[1]} (Set 2)")
+print(f"Toxicity: {tox[0]} (Set 1), {tox[1]} (Set 2)")
 ```
 
 ## Dependencies
@@ -79,3 +147,5 @@ To be explicit, you can install via:
 ```bash
 pip install openai==0.27.8 nltk==3.7 torch==2.0.1 transformers==4.31.0 rouge==1.0.1 bert_score==0.3.12 datasets==1.11.0
 ```
+
+Though installation of LARES via pip should account for these underlying dependencies.

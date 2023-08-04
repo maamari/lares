@@ -43,7 +43,7 @@ def determine_task(task_desc):
     return response.choices[0].text.strip()
 
 
-def generate(prompts, references, labels, max_iterations=10, task_type=None, feedback=True):
+def generate(prompts, references, labels, max_iterations=10, task_type=None, feedback=True, detox=True):
     """
     Generate a response, evaluate it, and ensure it is safe.
 
@@ -124,7 +124,8 @@ def generate(prompts, references, labels, max_iterations=10, task_type=None, fee
 
             # If the response is not acceptable due to high toxicity, generate a safe response
             else:
-                candidate, toxicity, score = until_safe(candidate)
+                if detox:
+                    candidate, toxicity, score = until_safe(candidate)
 
                 # If no safe response is found after max_attempts, raise an exception
                 if candidate is None:
