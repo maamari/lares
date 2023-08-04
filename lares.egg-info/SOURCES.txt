@@ -11,4 +11,3 @@ lares.egg-info/SOURCES.txt
 lares.egg-info/dependency_links.txt
 lares.egg-info/requires.txt
 lares.egg-info/top_level.txt
-tests/test_translation.py

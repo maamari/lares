@@ -43,7 +43,7 @@ def determine_task(task_desc):
     return response.choices[0].text.strip()
 
 
-def generate(prompts, references, labels, max_iterations=10, task_type=None, feedback=True):
+def generate(prompts, references, labels, max_iterations=10, task_type=None, feedback=True, detox=True):
     """
     Generate a response, evaluate it, and ensure it is safe.
 
@@ -57,7 +57,7 @@ def generate(prompts, references, labels, max_iterations=10, task_type=None, fee
     dict, float, dict: The suitable responses, references, labels, toxicity, and scores, 
     the bias score, and the average score and average toxicity for each group.
     """
-    # Check if prompts, references, and labels are lists and have the same length
+    # Check edge cases 
     if not isinstance(prompts, list) or not isinstance(references, list) or not isinstance(labels, list):
         raise TypeError("Prompts, references, and labels should be lists.")
     if len(prompts) != len(references) != len(labels):
@@ -82,10 +82,10 @@ def generate(prompts, references, labels, max_iterations=10, task_type=None, fee
                 raise ValueError(f"Unknown task type: {task_type}")
 
         for i in range(max_iterations):
-            # Generate a response
+            # Generate response
             candidate = get_response(prompt)
 
-            # Evaluate the response and calculate toxicity
+            # Evaluate response and calc tox
             if task_type == "Translation":
                 score = compute_average_meteor_score([candidate], [reference])
             elif task_type == "Summarization":
@@ -95,7 +95,7 @@ def generate(prompts, references, labels, max_iterations=10, task_type=None, fee
 
             toxicity = compute_toxicity(candidate)
 
-            # Check if the response is acceptable
+            # Check against thresholds
             if score >= 0.4 and toxicity <= 0.7:
                 data['response'].append(candidate)
                 data['reference'].append(reference)
@@ -104,7 +104,7 @@ def generate(prompts, references, labels, max_iterations=10, task_type=None, fee
                 data['score'].append(score)
                 break
 
-            # If the response is not acceptable due to low score, generate a new response
+            # If low eval 
             elif score < 0.4:
                 if feedback:
                     if i == max_iterations - 1:
@@ -122,18 +122,19 @@ def generate(prompts, references, labels, max_iterations=10, task_type=None, fee
                             break
                 continue
 
-            # If the response is not acceptable due to high toxicity, generate a safe response
+            # If high tox
             else:
-                candidate, toxicity, score = until_safe(candidate)
+                if detox:
+                    candidate, toxicity, score = until_safe(candidate)
 
                 # If no safe response is found after max_attempts, raise an exception
                 if candidate is None:
                     raise ValueError("Failed to generate an acceptable response after max_iterations")
     
-    # Calculate bias score
+    # Calculate bias
     _, bias_score = calculate_bias(data)
     
-    # Calculate average score and toxicity for each group
+    # Calculate avgs 
     group_scores = defaultdict(list)
     group_toxicity = defaultdict(list)
     for label, score, toxicity in zip(data['label'], data['score'], data['toxicity']):

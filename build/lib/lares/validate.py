@@ -73,14 +73,11 @@ def calculate_bias(data):
     Returns:
     dict, float: The scores for each group and the bias score.
     """
-    # Define the sensitive features
     sensitive_features = np.array(['fr' if label == 0 else 'es' for label in data['label']])
 
-    # Define the function to calculate the mean score
     def mean_score(y_true, y_pred):
         return np.mean(y_pred)
 
-    # Compute the fairness metrics for the scores
     scores_metric_frame = MetricFrame(
         metrics=mean_score,
         y_true=data['reference'],
@@ -88,13 +85,8 @@ def calculate_bias(data):
         sensitive_features=sensitive_features
     )
 
-    # Get the mean scores for each group
     group_scores = scores_metric_frame.by_group
-
-    # Compute the absolute difference between the group scores
     diff = np.abs(group_scores['fr'] - group_scores['es'])
-
-    # Normalize the difference to get a bias score between 0 and 1
     bias_score = diff
 
     return group_scores, bias_score
